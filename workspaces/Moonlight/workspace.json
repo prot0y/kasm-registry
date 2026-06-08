@@ -1,0 +1,29 @@
+{
+  "friendly_name": "Moonlight",
+  "description": "Stream your Windows desktop via Sunshine/NVENC using the Moonlight game streaming client.",
+  "image_src": "moonlight.png",
+  "categories": ["Desktop"],
+  "architecture": ["amd64"],
+  "compatibility": [
+    {
+      "version": "1.16.x",
+      "image": "ghcr.io/prot0y/moonlight-kasm:latest",
+      "uncompressed_size_mb": 2000,
+      "available_tags": ["latest"]
+    },
+    {
+      "version": "1.17.x",
+      "image": "ghcr.io/prot0y/moonlight-kasm:latest",
+      "uncompressed_size_mb": 2000,
+      "available_tags": ["latest"]
+    }
+  ],
+  "docker_registry": "https://ghcr.io",
+  "run_config": {
+    "environment": {
+      "SUNSHINE_HOST": "13.0.1.13"
+    }
+  },
+  "cores": 2,
+  "memory": 2048
+}
