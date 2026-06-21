@@ -1,0 +1,47 @@
+{
+  "description": "Chrome with baked-in NVIDIA GPU acceleration. Includes libGLX_nvidia, EGL vendor config, and a chrome wrapper that forces the NVIDIA GL driver. Requires nvidia-container-runtime on the Kasm host.",
+  "docker_registry": "https://ghcr.io",
+  "image_src": "chrome-nvidia.png",
+  "run_config": {
+    "hostname": "kasm",
+    "shm_size": "512m",
+    "runtime": "nvidia",
+    "devices": [
+      "/dev/video0:/dev/video0:rwm",
+      "/dev/dri:/dev/dri:rwm"
+    ],
+    "environment": {
+      "NVIDIA_VISIBLE_DEVICES": "all",
+      "NVIDIA_DRIVER_CAPABILITIES": "all",
+      "WEBCAM_ENABLED": "1",
+      "KASM_AUDIO_ENABLED": "1"
+    }
+  },
+  "exec_config": {
+    "go": {
+      "cmd": "bash -c '/dockerstartup/custom_startup.sh --go --url \"$KASM_URL\"'"
+    },
+    "assign": {
+      "cmd": "bash -c '/dockerstartup/custom_startup.sh --assign --url \"$KASM_URL\"'"
+    }
+  },
+  "categories": [
+    "Browser",
+    "GPU"
+  ],
+  "friendly_name": "Chrome (NVIDIA GPU)",
+  "architecture": [
+    "amd64"
+  ],
+  "compatibility": [
+    {
+      "version": "1.18.x",
+      "image": "ghcr.io/prot0y/kasm-chrome-nvidia:1.18.0",
+      "uncompressed_size_mb": 5200,
+      "available_tags": [
+        "1.18.0",
+        "latest"
+      ]
+    }
+  ]
+}
